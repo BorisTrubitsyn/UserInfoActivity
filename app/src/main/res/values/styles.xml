@@ -66,4 +66,9 @@
         <item name="android:textAppearance">@style/Text.Primary.Bold</item>
     </style>
 
+
+    <style name="TextIcon" parent="TextView.Secondary">
+        <item name="fontFamily">@font/font_awesome</item>
+    </style>
+
 </resources>

@@ -7,49 +7,55 @@
     android:padding="8dp"
     tools:context=".MainActivity">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/user_image_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher">
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:src="@mipmap/ic_launcher"/>
 
-    </ImageView>
 
     <TextView
         android:id="@+id/user_name_text_view"
         style="@style/TextView.Primary.Header"
         android:layout_below="@+id/user_image_view"
         android:layout_marginTop="@dimen/text_small_margin"
-        android:text="Имя">
+        android:text="Имя"/>
 
-    </TextView>
 
     <TextView
         android:id="@+id/user_nick_text_view"
         style="@style/TextView.Secondary"
         android:layout_below="@+id/user_name_text_view"
         android:layout_marginTop="@dimen/text_small_margin"
-        android:text="Ник">
+        android:text="Ник"/>
 
-    </TextView>
 
     <TextView
         android:id="@+id/user_description_text_view"
         style="@style/TextView.Primary"
         android:layout_below="@+id/user_nick_text_view"
         android:layout_marginTop="@dimen/text_small_margin"
-        android:text="Описание">
+        android:text="Описание"/>
 
-    </TextView>
+    <TextView
+        android:id="@+id/user_location_icon_text_view"
+        android:layout_below="@id/user_description_text_view"
+        android:layout_alignBaseline="@id/user_location_text_view"
+        style="@style/TextIcon"
+        android:layout_marginTop="@dimen/text_small_margin"
+        android:text="@string/fa_map_marker"/>
 
     <TextView
         android:id="@+id/user_location_text_view"
         style="@style/TextView.Secondary"
         android:layout_below="@+id/user_description_text_view"
         android:layout_marginTop="@dimen/text_small_margin"
-        android:text="Местоположение">
+        android:text="Местоположение"
+        android:layout_toEndOf="@id/user_location_icon_text_view"
+        android:layout_marginStart="10dp"
+        />
 
-    </TextView>
+
 
     <TextView
         android:id="@+id/following_count_text_view"
