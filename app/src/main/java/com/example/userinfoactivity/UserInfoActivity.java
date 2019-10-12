@@ -32,7 +32,18 @@ public class UserInfoActivity extends AppCompatActivity {
         locationTextView = findViewById(R.id.user_location_text_view);
         followersCountTextView = findViewById(R.id.followers_count_text_view);
         followingCountTextView = findViewById(R.id.following_count_text_view);
+        displayUserInfo();
 
+
+    }
+    private void displayUserInfo(){
+        Picasso.get().load("http://i.imgur.com/DvpvklR.png").into(userImageView);
+        nameTextView.setText("DevColibri");
+        nickTextView.setText("@devcolibri");
+        descriptionTextView.setText("Sample description");
+        locationTextView.setText("USA");
+        followingCountTextView.setText("42");
+        followersCountTextView.setText("54");
 
     }
 }
