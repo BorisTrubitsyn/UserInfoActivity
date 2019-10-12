@@ -27,27 +27,7 @@ public class User {
         this.followersCount = followersCount;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return id == user.id &&
-                followingCount == user.followingCount &&
-                followersCount == user.followersCount &&
-                Objects.equals(imageUrl, user.imageUrl) &&
-                name.equals(user.name) &&
-                nick.equals(user.nick) &&
-                Objects.equals(description, user.description) &&
-                Objects.equals(location, user.location);
-    }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, imageUrl, name, nick, description, location, followingCount, followersCount);
-    }
 
     public long getId() {
         return id;
@@ -81,6 +61,40 @@ public class User {
         return followersCount;
     }
 
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (id != user.id) return false;
+        if (followingCount != user.followingCount) return false;
+        if (followersCount != user.followersCount) return false;
+        if (imageUrl != null ? !imageUrl.equals(user.imageUrl) : user.imageUrl != null)
+            return false;
+        if (!name.equals(user.name)) return false;
+        if (!nick.equals(user.nick)) return false;
+        if (description != null ? !description.equals(user.description) : user.description != null) {
+            return false;
+        }
+        return location != null ? location.equals(user.location) : user.location == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (imageUrl != null ? imageUrl.hashCode() : 0);
+        result = 31 * result + name.hashCode();
+        result = 31 * result + nick.hashCode();
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (location != null ? location.hashCode() : 0);
+        result = 31 * result + followingCount;
+        result = 31 * result + followersCount;
+        return result;
+    }
 
 }
 

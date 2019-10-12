@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.userinfoactivity.pojo.User;
 import com.squareup.picasso.Picasso;
 
 
@@ -45,5 +47,15 @@ public class UserInfoActivity extends AppCompatActivity {
         followingCountTextView.setText("42");
         followersCountTextView.setText("54");
 
+    }
+
+    private User getUser(){
+        return new User(1L, "http://i.imgur.com/DvpvklR.png",
+                "DevColibri",
+                "devcolibri",
+                "Sample description",
+                "USA",
+                42,
+                42);
     }
 }
