@@ -38,18 +38,23 @@ public class UserInfoActivity extends AppCompatActivity {
 
 
     }
-    private void displayUserInfo(){
+
+    private void displayUserInfo() {
         Picasso.get().load("http://i.imgur.com/DvpvklR.png").into(userImageView);
         nameTextView.setText("DevColibri");
         nickTextView.setText("@devcolibri");
         descriptionTextView.setText("Sample description");
         locationTextView.setText("USA");
-        followingCountTextView.setText("42");
-        followersCountTextView.setText("54");
+
+        String followingCount = String.valueOf(getUser().getFollowingCount());
+        followingCountTextView.setText(followingCount);
+
+        String followersCount = String.valueOf(getUser().getFollowersCount());
+        followersCountTextView.setText(followersCount);
 
     }
 
-    private User getUser(){
+    private User getUser() {
         return new User(1L, "http://i.imgur.com/DvpvklR.png",
                 "DevColibri",
                 "devcolibri",
