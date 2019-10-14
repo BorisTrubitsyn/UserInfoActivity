@@ -1,6 +1,8 @@
 package com.example.userinfoactivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -19,6 +21,7 @@ public class UserInfoActivity extends AppCompatActivity {
     private TextView locationTextView;
     private TextView followingCountTextView;
     private TextView followersCountTextView;
+    private RecyclerView tweetsRecyclerView;
 
 
     @Override
@@ -35,8 +38,15 @@ public class UserInfoActivity extends AppCompatActivity {
         followersCountTextView = findViewById(R.id.followers_count_text_view);
         followingCountTextView = findViewById(R.id.following_count_text_view);
         displayUserInfo();
+        initRecyclerView();
 
 
+
+    }
+
+    private void initRecyclerView() {
+        tweetsRecyclerView = findViewById(R.id.tweets_recycler_view);
+        tweetsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private void displayUserInfo() {
@@ -63,4 +73,6 @@ public class UserInfoActivity extends AppCompatActivity {
                 42,
                 42);
     }
+
 }
+
