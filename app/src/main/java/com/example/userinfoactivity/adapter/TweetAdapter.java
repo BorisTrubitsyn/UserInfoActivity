@@ -1,48 +1,41 @@
 package com.example.userinfoactivity.adapter;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.userinfoactivity.R;
 import com.example.userinfoactivity.pojo.Tweet;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
-//унаследовали наш адаптер от RecyclerView
-//указали собственный ViewHolder
-public class TweetAdapter extends RecyclerView.Adapter {
-    private List<Tweet>tweetList = new ArrayList<>();
-    private static final String TWITTER_RESPONSE_FORMAT = "EEE MMM dd HH:mm:ss";
-    private static final String MONTH_DAY_FORMAT = "MMM d ";
+public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.TweetViewHolder> {
+    private static final String TWITTER_RESPONSE_FORMAT="EEE MMM dd HH:mm:ss ZZZZZ yyyy"; // Thu Oct 26 07:31:08 +0000 2017
+    private static final String MONTH_DAY_FORMAT = "MMM d"; // Oct 26
 
-
-    public void setItems(Collection<Tweet>tweets){
-        tweetList.addAll(tweets);
-        notifyDataSetChanged();
-    }
-    public void clearItems(){
-        tweetList.clear();
-        notifyDataSetChanged();
-    }
+    private List<Tweet> tweetList = new ArrayList<>();
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.tweet_item_view,parent,false);
-        return new TweetViewHolder(view) ;
+    public TweetViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.tweet_item_view, parent, false);
+        return new TweetViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(TweetViewHolder holder, int position) {
         holder.bind(tweetList.get(position));
-
     }
 
     @Override
@@ -50,23 +43,28 @@ public class TweetAdapter extends RecyclerView.Adapter {
         return tweetList.size();
     }
 
+    public void setItems(Collection<Tweet> tweets) {
+        tweetList.addAll(tweets);
+        notifyDataSetChanged();
+    }
+
+    public void clearItems() {
+        tweetList.clear();
+        notifyDataSetChanged();
+    }
 
     class TweetViewHolder extends RecyclerView.ViewHolder {
-
-
         private ImageView userImageView;
         private TextView nameTextView;
         private TextView nickTextView;
         private TextView creationDateTextView;
         private TextView contentTextView;
+        private ImageView tweetImageView;
         private TextView retweetsTextView;
         private TextView likesTextView;
-        private ImageView tweetImageView;
-
 
         public TweetViewHolder(View itemView) {
             super(itemView);
-
             userImageView = itemView.findViewById(R.id.profile_image_view);
             nameTextView = itemView.findViewById(R.id.author_name_text_view);
             nickTextView = itemView.findViewById(R.id.author_nick_text_view);
@@ -84,10 +82,23 @@ public class TweetAdapter extends RecyclerView.Adapter {
             retweetsTextView.setText(String.valueOf(tweet.getRetweetCount()));
             likesTextView.setText(String.valueOf(tweet.getFavouriteCount()));
 
-            String creationDateFormatted = getFormatedDate(tweet.getCreationDate());
+
+            String creationDateFormatted = getFormattedDate(tweet.getCreationDate());
             creationDateTextView.setText(creationDateFormatted);
+
+        }
+
+        private String getFormattedDate(String rawDate) {
+            SimpleDateFormat utcFormat = new SimpleDateFormat(TWITTER_RESPONSE_FORMAT, Locale.ROOT);
+            SimpleDateFormat displayedFormat = new SimpleDateFormat(MONTH_DAY_FORMAT, Locale.getDefault());
+            try {
+                Date date = utcFormat.parse(rawDate);
+                return displayedFormat.format(date);
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
+}
 
-    }
 
