@@ -1,6 +1,7 @@
 package com.example.userinfoactivity.activity;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,9 +31,19 @@ public class SearchUsersActivity extends AppCompatActivity {
         usersRecyclerView = findViewById(R.id.users_recycler_view);
         usersRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        usersAdapter = new UsersAdapter();
+
+        UsersAdapter.OnUserClickListener onUserClickListener = new UsersAdapter.OnUserClickListener() {
+            @Override
+            public void onUserClick(User user) {
+                Toast.makeText(SearchUsersActivity.this, "user " + user.getName(), Toast.LENGTH_SHORT).show();
+            }
+        };
+        usersAdapter = new UsersAdapter(onUserClickListener);
         usersRecyclerView.setAdapter(usersAdapter);
     }
+
+
+
     private void searchUsers() {
         Collection<User> users = getUsers();
         usersAdapter.setItems(users);
@@ -54,7 +65,7 @@ public class SearchUsersActivity extends AppCompatActivity {
 
                 new User(
                         44196397L,
-                        "https://pbs.twimg.com/profile_images/782474226020200448/zDo-gAo0_400x400.jpg",
+                        "https://ru.wikipedia.org/wiki/%D0%9C%D0%B0%D1%81%D0%BA,_%D0%98%D0%BB%D0%BE%D0%BD#/media/%D0%A4%D0%B0%D0%B9%D0%BB:Elon_Musk_Royal_Society.jpg",
                         "Elon Musk",
                         "@elonmusk",
                         "Hat Salesman",

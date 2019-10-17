@@ -17,6 +17,13 @@ import java.util.List;
 
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHolder> {
     private List<User> userList = new ArrayList<>();
+    private OnUserClickListener onUserClickListener;
+
+    public UsersAdapter(OnUserClickListener onUserClickListener){
+        this.onUserClickListener = onUserClickListener;
+    }
+
+
 
     @Override
     public UserViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -55,11 +62,23 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
             userImageView = itemView.findViewById(R.id.profile_image_view);
             nameTextView = itemView.findViewById(R.id.user_name_text_view);
             nickTextView = itemView.findViewById(R.id.user_nick_text_view);
+
+            itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    User user = userList.get(getLayoutPosition());
+                    onUserClickListener.onUserClick(user);
+                }
+            });
         }
 
         public void bind(User user) {
             nameTextView.setText(user.getName());
             nickTextView.setText(user.getNick());
         }
+    }
+    public interface OnUserClickListener{
+        void onUserClick(User user);
+
     }
 }
