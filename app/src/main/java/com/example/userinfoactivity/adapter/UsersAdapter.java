@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.userinfoactivity.R;
 import com.example.userinfoactivity.pojo.User;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -75,6 +76,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
         public void bind(User user) {
             nameTextView.setText(user.getName());
             nickTextView.setText(user.getNick());
+            Picasso.get().load(user.getImageUrl()).into(userImageView);
         }
     }
     public interface OnUserClickListener{

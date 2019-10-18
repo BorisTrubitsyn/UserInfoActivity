@@ -88,6 +88,12 @@
             android:layout_toEndOf="@+id/followers_count_text_view"
             android:text="@string/followers_hint"/>
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            style="@style/Toolbar">
+
+        </androidx.appcompat.widget.Toolbar>
+
     </RelativeLayout>
 
     <View

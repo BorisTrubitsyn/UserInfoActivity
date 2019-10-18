@@ -31,6 +31,7 @@ public class UserInfoActivity extends AppCompatActivity {
 
     private RecyclerView tweetsRecyclerView;
     private TweetAdapter tweetAdapter;
+    public static final String USER_ID = "userId";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

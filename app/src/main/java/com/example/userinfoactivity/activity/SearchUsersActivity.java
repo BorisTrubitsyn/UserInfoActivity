@@ -1,5 +1,6 @@
 package com.example.userinfoactivity.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -35,7 +36,9 @@ public class SearchUsersActivity extends AppCompatActivity {
         UsersAdapter.OnUserClickListener onUserClickListener = new UsersAdapter.OnUserClickListener() {
             @Override
             public void onUserClick(User user) {
-                Toast.makeText(SearchUsersActivity.this, "user " + user.getName(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(SearchUsersActivity.this, UserInfoActivity.class);
+                intent.putExtra(UserInfoActivity.USER_ID,user.getId());
+                startActivity(intent);
             }
         };
         usersAdapter = new UsersAdapter(onUserClickListener);
@@ -65,7 +68,7 @@ public class SearchUsersActivity extends AppCompatActivity {
 
                 new User(
                         44196397L,
-                        "https://ru.wikipedia.org/wiki/%D0%9C%D0%B0%D1%81%D0%BA,_%D0%98%D0%BB%D0%BE%D0%BD#/media/%D0%A4%D0%B0%D0%B9%D0%BB:Elon_Musk_Royal_Society.jpg",
+                        "https://pbs.twimg.com/profile_images/782474226020200448/zDo-gAo0_400x400.jpg",
                         "Elon Musk",
                         "@elonmusk",
                         "Hat Salesman",
