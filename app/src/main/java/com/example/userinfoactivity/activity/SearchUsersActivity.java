@@ -2,7 +2,6 @@ package com.example.userinfoactivity.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,7 +11,6 @@ import com.example.userinfoactivity.R;
 import com.example.userinfoactivity.adapter.UsersAdapter;
 import com.example.userinfoactivity.pojo.User;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -20,13 +18,17 @@ public class SearchUsersActivity extends AppCompatActivity {
     private RecyclerView usersRecyclerView;
     private UsersAdapter usersAdapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_users);
         initRecyclerView();
         searchUsers();
+
+
     }
+
 
     private void initRecyclerView() {
         usersRecyclerView = findViewById(R.id.users_recycler_view);
@@ -37,19 +39,20 @@ public class SearchUsersActivity extends AppCompatActivity {
             @Override
             public void onUserClick(User user) {
                 Intent intent = new Intent(SearchUsersActivity.this, UserInfoActivity.class);
-                intent.putExtra(UserInfoActivity.USER_ID,user.getId());
                 startActivity(intent);
             }
         };
         usersAdapter = new UsersAdapter(onUserClickListener);
         usersRecyclerView.setAdapter(usersAdapter);
-    }
 
+
+    }
 
 
     private void searchUsers() {
         Collection<User> users = getUsers();
         usersAdapter.setItems(users);
+
     }
 
 
@@ -67,6 +70,7 @@ public class SearchUsersActivity extends AppCompatActivity {
                 ),
 
                 new User(
+
                         44196397L,
                         "https://pbs.twimg.com/profile_images/782474226020200448/zDo-gAo0_400x400.jpg",
                         "Elon Musk",

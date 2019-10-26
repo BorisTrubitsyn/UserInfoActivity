@@ -5,6 +5,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <androidx.appcompat.widget.Toolbar
+        style="@style/Toolbar"
+        android:id="@+id/toolbar"/>
+
+
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,7 +21,9 @@
             android:id="@+id/user_image_view"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@mipmap/ic_launcher" />
+
+
 
         <TextView
             android:id="@+id/user_name_text_view"
@@ -88,12 +97,6 @@
             android:layout_toEndOf="@+id/followers_count_text_view"
             android:text="@string/followers_hint"/>
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            style="@style/Toolbar">
-
-        </androidx.appcompat.widget.Toolbar>
-
     </RelativeLayout>
 
     <View
@@ -102,8 +105,15 @@
         android:layout_height="6dp"
         android:layout_marginTop="@dimen/text_small_margin"
         android:background="@color/gray_mercury"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tweets_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+
+
+
+
+
 </LinearLayout>

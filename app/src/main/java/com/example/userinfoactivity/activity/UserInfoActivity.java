@@ -1,12 +1,14 @@
 package com.example.userinfoactivity.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.userinfoactivity.R;
 import com.example.userinfoactivity.adapter.TweetAdapter;
@@ -14,8 +16,6 @@ import com.example.userinfoactivity.pojo.Tweet;
 import com.example.userinfoactivity.pojo.User;
 import com.squareup.picasso.Picasso;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -28,15 +28,16 @@ public class UserInfoActivity extends AppCompatActivity {
     private TextView locationTextView;
     private TextView followingCountTextView;
     private TextView followersCountTextView;
+    private Toolbar toolbar;
 
-    private RecyclerView tweetsRecyclerView;
+    public RecyclerView tweetsRecyclerView;
     private TweetAdapter tweetAdapter;
     public static final String USER_ID = "userId";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_user_info);
 
         userImageView = findViewById(R.id.user_image_view);
         nameTextView = findViewById(R.id.user_name_text_view);
@@ -46,11 +47,23 @@ public class UserInfoActivity extends AppCompatActivity {
         followingCountTextView = findViewById(R.id.following_count_text_view);
         followersCountTextView = findViewById(R.id.followers_count_text_view);
 
-        initRecyclerView();
 
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
+        initRecyclerView();
         loadUserInfo();
         loadTweets();
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.user_info_menu, menu);
+        return true;
+    }
+
 
     private void loadTweets() {
         Collection<Tweet> tweets = getTweets();
@@ -89,11 +102,14 @@ public class UserInfoActivity extends AppCompatActivity {
         descriptionTextView.setText(user.getDescription());
         locationTextView.setText(user.getLocation());
 
+
         String followingCount = String.valueOf(user.getFollowingCount());
         followingCountTextView.setText(followingCount);
 
         String followersCount = String.valueOf(user.getFollowersCount());
         followersCountTextView.setText(followersCount);
+
+
     }
 
     private User getUser() {

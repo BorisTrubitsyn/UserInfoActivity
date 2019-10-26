@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -62,6 +62,7 @@
     <style name="Text.Primary.Bold">
         <item name="android:textStyle">bold</item>
     </style>
+
     <style name="TextView.Primary.Bold">
         <item name="android:textAppearance">@style/Text.Primary.Bold</item>
     </style>
@@ -80,7 +81,9 @@
     <style name="Toolbar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">?attr/actionBarSize</item>
+        <!-- <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item> -->
         <item name="android:background">@color/colorPrimary</item>
     </style>
+
 
 </resources>
