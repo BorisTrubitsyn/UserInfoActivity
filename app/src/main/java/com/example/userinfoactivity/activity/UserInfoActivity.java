@@ -1,7 +1,9 @@
 package com.example.userinfoactivity.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -63,6 +65,14 @@ public class UserInfoActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.user_info_menu, menu);
         return true;
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.action_search) {
+            Intent intent = new Intent(this, SearchUsersActivity.class);
+            startActivity(intent);
+        }
+        return true;
+    }
 
 
     private void loadTweets() {
@@ -101,6 +111,8 @@ public class UserInfoActivity extends AppCompatActivity {
         nickTextView.setText(user.getNick());
         descriptionTextView.setText(user.getDescription());
         locationTextView.setText(user.getLocation());
+        getSupportActionBar().setTitle("Воробушек");
+
 
 
         String followingCount = String.valueOf(user.getFollowingCount());
@@ -116,12 +128,12 @@ public class UserInfoActivity extends AppCompatActivity {
         return new User(
                 1L,
                 "http://i.imgur.com/DvpvklR.png",
-                "DevColibri",
-                "devcolibri",
-                "Sample description",
-                "USA",
-                42,
-                42
+                "Борис Бергер",
+                "Berta",
+                "09.03.1994",
+                "Кёнигсберг",
+                37,
+                462
         );
     }
 }

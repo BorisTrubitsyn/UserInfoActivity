@@ -30,7 +30,7 @@
             style="@style/TextView.Primary.Header"
             android:layout_below="@id/user_image_view"
             android:layout_marginTop="@dimen/text_small_margin"
-            android:text="Имя"/>
+            android:text="Борис Бергер"/>
 
         <TextView
             android:id="@+id/user_nick_text_view"
